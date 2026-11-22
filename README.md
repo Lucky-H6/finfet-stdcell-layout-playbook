@@ -1,7 +1,8 @@
 # finfet-stdcell-layout-playbook
 
-A [Claude Code](https://claude.com/claude-code) skill for drawing **FinFET standard-cell-style
-layouts**. It holds the design experience gathered while building a complete cell library by
+An agent skill for drawing **FinFET standard-cell-style layouts**. It uses the open
+`SKILL.md` format, so it works with any coding agent that supports skills, such as Claude Code,
+Codex or OpenCode, and with any other agent through a one-line pointer. It holds the design experience gathered while building a complete cell library by
 hand and by script: logic gates, pass gates, tie cells, tri-state cells, fillers, well taps,
 end caps, thick-oxide gates and a level shifter. Reference layouts and schematics come with it.
 
@@ -77,14 +78,31 @@ finfet-stdcell-layout-playbook/
 
 ## Installation
 
-Copy (or clone) the folder into your Claude Code skills directory:
+Clone the repository into your agent's skills directory:
 
 ```bash
-git clone <this-repo> ~/.claude/skills/finfet-stdcell-layout-playbook
+git clone https://github.com/Lucky-H6/finfet-stdcell-layout-playbook.git <skills-dir>/finfet-stdcell-layout-playbook
 ```
 
-Claude Code then lists the skill and uses it automatically for std-cell layout work. You can
-also ask for it by name ("use the finfet-stdcell-layout-playbook skill").
+| Agent | Typical skills directory (user-level; check your agent's docs) |
+|---|---|
+| Claude Code | `~/.claude/skills/` (or `.claude/skills/` in a project) |
+| Codex CLI | `~/.codex/skills/` (or `.codex/skills/` in a project) |
+| OpenCode | `~/.config/opencode/skill/` (or `.opencode/skill/` in a project) |
+
+The agent reads the `name` and `description` from `SKILL.md` and loads the skill for
+std-cell layout work. You can also ask for it by name ("use the
+finfet-stdcell-layout-playbook skill").
+
+**Agents without skill support.** Clone the repository anywhere and add a line to the
+project's `AGENTS.md` (or the agent's equivalent instruction file):
+
+```
+For standard-cell layout work, first read <path>/finfet-stdcell-layout-playbook/SKILL.md and follow it.
+```
+
+`SKILL.md` points to everything else. If your agent cannot view images, use
+`scripts/gdsref.py dump` to read cell shapes as text instead of the PNG previews.
 
 ## Using the assets directly
 
